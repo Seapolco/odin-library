@@ -1,3 +1,10 @@
+
+// TO-DO - make form pop up
+
+// Delete book
+
+
+
 console.log('Hello, World!');
 
 let myLibrary = [];
@@ -12,13 +19,15 @@ let pagesInput = document.querySelector('#pagesInput');
 let readSelect = document.querySelector('#readSelect');
 let addButton = document.querySelector('#addBook');
 
-let bookCard = document.createElement('div');
-let titleDiv = document.createElement('div');
-let authorDiv = document.createElement('div');
-let pagesDiv = document.createElement('div');
-let readDiv = document.createElement('div');
+// let bookCard = document.createElement('div');
+// let titleDiv = document.createElement('div');
+// let authorDiv = document.createElement('div');
+// let pagesDiv = document.createElement('div');
+// let readDiv = document.createElement('div');
 
 let gif = document.querySelector('.gif');
+
+
 
 function Book(title,author,pages,read) {
   // the constructor...
@@ -58,7 +67,9 @@ addButton.addEventListener('click', (e) => {
   switcher();
 })
 
-let mrPye = new Book('Mr Pye', 'by   Mervyn Peake', "261 pages", 'Finished');
+let mrPye = new Book('Mr Pye', 'by   Mervyn Peake', "278 pages", 'Finished');
+
+// let dreamside = new Book('Dreamside', 'by Graham Joyce', '248 pages', 'Finished' )
 
 myLibrary.push(mrPye);
 // addBookToLibrary(mrPye);
@@ -80,6 +91,7 @@ function addBookToLibrary(book) {
   let authorDiv = document.createElement('div');
   let pagesDiv = document.createElement('div');
   let readDiv = document.createElement('div');
+  let deleteBook = document.createElement('button');
 
   let titleText = document.createTextNode(book.title);
   titleDiv.appendChild(titleText);
@@ -92,11 +104,20 @@ function addBookToLibrary(book) {
   
   let readText = document.createTextNode(book.read);
   readDiv.appendChild(readText);
+
+  deleteBook.classList.add('deleteButton');
+  deleteBook.innerHTML = 'Delete';
   
-  bookCard.append(titleDiv, authorDiv, pagesDiv, readDiv);
+  bookCard.append(titleDiv, authorDiv, pagesDiv, readDiv, deleteBook);
   
   bookCard.classList.add('book-card');
   bookCard.setAttribute('data', myLibrary.length)
+
+  deleteBook.addEventListener('click', (e) => {
+    console.log(e.target.closest('div'));
+    console.log('Delete')
+    e.target.closest('div').remove();
+  })
   
   bookDisplay.appendChild(bookCard);
 }
@@ -108,8 +129,17 @@ function resetInputs(inputArray) {
 
 }
 
-
 displayMyLibrary(myLibrary);
+
+// let removeBook = document.querySelectorAll('.deleteButton');
+
+// removeBook.forEach((button) => {
+//   button.addEventListener('click', (e) => {
+//     console.log(e.target.closest('div'));
+//     console.log('Delete')
+//   })
+// })
+
 
 
 
