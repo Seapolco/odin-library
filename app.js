@@ -18,6 +18,8 @@ let authorDiv = document.createElement('div');
 let pagesDiv = document.createElement('div');
 let readDiv = document.createElement('div');
 
+let gif = document.querySelector('.gif');
+
 function Book(title,author,pages,read) {
   // the constructor...
   this.title = title;
@@ -26,21 +28,37 @@ function Book(title,author,pages,read) {
   this.read = read;
 }
 
+function changeImageCleverer() {
+  gif.setAttribute('class', 'gif');
+  gif.style.backgroundImage = "url('./images/cleverer.webp')";
+}
+
+function changeImageBook() {
+  gif.setAttribute('class', 'gif');
+  gif.style.backgroundImage = "url('./images/bookGif.webp')";
+}
+
+function switcher() {
+  changeImageCleverer();
+  setTimeout(changeImageBook, 3500)
+}
+
 
 
 addButton.addEventListener('click', (e) => {
   e.preventDefault();
   console.log(myLibrary.length)
   console.log('added');
-  let newBook = new Book(titleInput.value,authorInput.value,pagesInput.value,readSelect.value );
+  let newBook = new Book(titleInput.value,`by ${authorInput.value}`,`${pagesInput.value}   pages`,readSelect.value );
   myLibrary.push(newBook);
   // addBookToLibrary(newBook);
   updateLibrary();
   console.log(myLibrary)
   resetInputs([titleInput,authorInput,pagesInput,readSelect]);
+  switcher();
 })
 
-let mrPye = new Book('Mr Pye', 'Mervyn Peake', 261, 'Finished');
+let mrPye = new Book('Mr Pye', 'by   Mervyn Peake', "261 pages", 'Finished');
 
 myLibrary.push(mrPye);
 // addBookToLibrary(mrPye);
