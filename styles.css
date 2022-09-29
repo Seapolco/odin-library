@@ -212,9 +212,30 @@ label, input {
 	font-size: 1.25rem;
 	font-family: 'Staatliches';
 	width: 30%;
+	margin-top: 6px;
 }
 
 .deleteButton:active{
 	transform: scale(0.9);
 	box-shadow:  1.5px 1.5px .5px #807EF2;;
 }
+
+.readButton {
+	display: grid;
+
+	justify-self: center;
+	align-content: center;
+	background-color: #FDC801;
+	border: none;
+	border-radius: 10px;
+	box-shadow: 3px 3px 2px #807ef2bc;
+	font-size: 1.25rem;
+	font-family: 'Staatliches';
+	width: 30%;
+}
+
+.readButton:active{
+	transform: scale(0.9);
+	box-shadow:  1.5px 1.5px .5px #807EF2;;
+}
+

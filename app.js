@@ -1,7 +1,9 @@
 
 // TO-DO - make form pop up
 
-// Delete book
+// Delete book DONE
+
+// FIRESHIP IO TUT ON ANIMATED FROM SIDE EFFECT ON SCROOLL
 
 
 
@@ -35,6 +37,9 @@ function Book(title,author,pages,read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
+  this.changeReadStatus = (status) =>{
+    this.read = status;
+  }
 }
 
 function changeImageCleverer() {
@@ -84,6 +89,12 @@ function updateLibrary() {
   addBookToLibrary(myLibrary[myLibrary.length -1]);
 }
 
+function deleteLibrary() {
+  while (bookDisplay.firstChild) {
+    bookDisplay.removeChild(bookDisplay.lastChild);
+  }
+}
+
 function addBookToLibrary(book) {
   // do stuff here
   let bookCard = document.createElement('div');
@@ -91,7 +102,11 @@ function addBookToLibrary(book) {
   let authorDiv = document.createElement('div');
   let pagesDiv = document.createElement('div');
   let readDiv = document.createElement('div');
+
+  let readStatus = document.createElement('button');
+
   let deleteBook = document.createElement('button');
+
 
   let titleText = document.createTextNode(book.title);
   titleDiv.appendChild(titleText);
@@ -105,16 +120,40 @@ function addBookToLibrary(book) {
   let readText = document.createTextNode(book.read);
   readDiv.appendChild(readText);
 
+  readStatus.classList.add('readButton');
+  
+
   deleteBook.classList.add('deleteButton');
   deleteBook.innerHTML = 'Delete';
+
+  if(book.read === 'Started') {
+    readStatus.innerHTML = 'Finished';
+    bookCard.append(titleDiv, authorDiv, pagesDiv, readDiv, readStatus, deleteBook);
+  } else if (book.read == 'Unstarted') {
+    readStatus.innerHTML = 'Started'
+    bookCard.append(titleDiv, authorDiv, pagesDiv, readDiv, readStatus, deleteBook);
+  } else {
+    bookCard.append(titleDiv, authorDiv, pagesDiv, readDiv, deleteBook);
+  }
   
-  bookCard.append(titleDiv, authorDiv, pagesDiv, readDiv, deleteBook);
+  if(book.read === 'Started' || book.read === 'Unstarted') {
+    readStatus.addEventListener('click', (e) => {
+
+      let index = (e.target.closest('div').attributes.data.value) -1;
+      myLibrary[index].changeReadStatus('CHANGED');
+      console.log(myLibrary[index]);
+      deleteLibrary();
+      displayMyLibrary(myLibrary)
+  
+    })
+  }
   
   bookCard.classList.add('book-card');
-  bookCard.setAttribute('data', myLibrary.length)
+  bookCard.setAttribute('data', myLibrary.length);
+
 
   deleteBook.addEventListener('click', (e) => {
-    console.log(e.target.closest('div'));
+    console.log(e.target.closest('div').attributes.data.value);
     console.log('Delete')
     e.target.closest('div').remove();
   })
