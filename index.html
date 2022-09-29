@@ -6,25 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton">
+
     <script src="app.js" defer></script>
 </head>
 <body>
     <div class="container">
     <div class="header">
-        <h1>Online Library</h1>
+        <h1>My Library</h1>
         <img src="./images/colorBook.png" alt="">
     </div>
-    <form class="addBookForm">
-        <input id="titleInput" type="text">
-        <input id="authorInput" type="text">
-        <input id="pagesInput" type="text">
-        <select name="read" id="readSelect">
-            <option value="Unstarted">Unstarted</option>
-            <option value="Started">Started</option>
-            <option value="Finished">Finished</option>
-        </select>
-        <button id="addBook">Add to Library</button>
-    </form>
+    <div class="bookFormAndGif">
+        <form class="addBookForm">
+            <div class="title">
+                <label for="titleInput">Title</label>
+                <input id="titleInput" type="text">
+            </div>
+            <div class="author">
+                <label for="authorInput">Author</label>
+                <input id="authorInput" type="text">
+            </div>
+            <div class="pages">
+                <label for="pagesInput">Pages</label>
+                <input id="pagesInput" type="text">
+            </div>
+            <div class="read">
+                <label for="readSelect">Progress</label>
+                <select name="read" id="readSelect">
+                    <option value="Unstarted">Unstarted</option>
+                    <option value="Started">Started</option>
+                    <option value="Finished">Finished</option>
+                </select>
+            </div>
+            <button id="addBook">Add to Library</button>
+        </form>
+        <img class="gif" src="./images/bookGif.webp" alt="">
+    </div>
     <h2>Books</h2>
     <div class="bookDisplay">
         <!-- <div class="book-card">
