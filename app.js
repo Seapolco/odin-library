@@ -22,16 +22,16 @@ let readSelect = document.querySelector('#readSelect');
 let addButton = document.querySelector('#addBook');
 
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    console.log(entry);
-    if(entry.isIntersecting) {
-      entry.target.classList.add('show')
-    } else {
-      entry.target.classList.remove('show');
-    }
-  })
-});
+// const observer = new IntersectionObserver((entries) => {
+//   entries.forEach((entry) => {
+//     console.log(entry);
+//     if(entry.isIntersecting) {
+//       entry.target.classList.add('show')
+//     } else {
+//       entry.target.classList.remove('show');
+//     }
+//   })
+// });
 
 
 
@@ -45,13 +45,26 @@ let gif = document.querySelector('.gif');
 
 
 
-function Book(title,author,pages,read) {
-  // the constructor...
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.changeReadStatus = (status) =>{
+// function Book(title,author,pages,read) {
+//   // the constructor...
+//   this.title = title;
+//   this.author = author;
+//   this.pages = pages;
+//   this.read = read;
+//   this.changeReadStatus = (status) =>{
+//     this.read = status;
+//   }
+// }
+
+class Book {
+  constructor(title,author,pages,read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+
+  set changeReadStatus(status) {
     this.read = status;
   }
 }
@@ -80,7 +93,7 @@ addButton.addEventListener('click', (e) => {
   let newBook = new Book(titleInput.value,`by ${authorInput.value}`,`${pagesInput.value}   pages`,readSelect.value );
   myLibrary.push(newBook);
   // addBookToLibrary(newBook);
-  //updateLibrary();
+  // updateLibrary();
   deleteLibrary();
   displayMyLibrary(myLibrary)
   console.log(myLibrary)
@@ -161,6 +174,7 @@ function displayMyLibrary(library) {
     }
 
     bookCard.classList.add('book-card');
+    bookCard.classList.add('show');
     bookCard.setAttribute('data', library.indexOf(book));
 
     deleteBook.addEventListener('click', (e) => {
@@ -194,9 +208,9 @@ function displayMyLibrary(library) {
     let bookCards = document.querySelectorAll('.book-card');
 
     bookDisplay.appendChild(bookCard);
-    bookCards.forEach((el) => {
-      observer.observe(el);
-    })
+    // bookCards.forEach((el) => {
+    //   observer.observe(el);
+    // })
 
 
   })
@@ -208,9 +222,9 @@ displayMyLibrary(myLibrary);
 
 let bookCard = document.querySelectorAll('.book-card');
 
-bookCard.forEach((el) => {
-  observer.observe(el);
-})
+// bookCard.forEach((el) => {
+//   observer.observe(el);
+// })
 
 
 
