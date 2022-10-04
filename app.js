@@ -190,12 +190,13 @@ function displayMyLibrary(library) {
     if(book.read === 'Started' || book.read === 'Unstarted') {
     readStatus.addEventListener('click', (e) => {
 
-      let index = (e.target.closest('div').attributes.data.value);
+      let index = e.target.closest('div').attributes.data.value;
+      console.log(index)
 
       if(book.read === 'Started') {
-        myLibrary[index].changeReadStatus('Finished');
+        myLibrary[index].changeReadStatus = 'Finished';
       } else {
-        myLibrary[index].changeReadStatus('Started');
+        myLibrary[index].changeReadStatus = 'Started';
       }
       
       console.log(myLibrary[index]);
